@@ -35,9 +35,9 @@ func api_count(w http.ResponseWriter, r *http.Request) {
 	log.Println(r.RemoteAddr, r.RequestURI)
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
+	count++
 	m := CountMsg{Count: count}
 	json.NewEncoder(w).Encode(m)
-	count++
 }
 
 func api_shutdown(w http.ResponseWriter, r *http.Request) {

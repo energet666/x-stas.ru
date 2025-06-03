@@ -1,6 +1,7 @@
 <script lang="ts">
-	const host = window.location.hostname;
-	const apiHost = "http://" + host + ":8080"; //на этом порту гошный сервер
+	//const host = window.location.hostname;
+	// const apiHost = "http://" + host + ":8080"; //для отладки или если статика и бэкенд на разных хостах
+	const apiHost = "";
 
 	window.addEventListener("unload", () => {
 		console.log("unload");
