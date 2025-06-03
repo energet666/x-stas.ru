@@ -32,7 +32,7 @@ type CountMsg struct {
 // }
 
 func api_count(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(r.RemoteAddr, r.RequestURI)
+	log.Println(r.RemoteAddr, r.RequestURI)
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
 	m := CountMsg{Count: count}
@@ -41,7 +41,7 @@ func api_count(w http.ResponseWriter, r *http.Request) {
 }
 
 func api_shutdown(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(r.Host, r.RequestURI)
+	log.Println(r.Host, r.RequestURI)
 }
 
 var count = 0
@@ -50,12 +50,10 @@ func main() {
 	sm := http.NewServeMux()
 	static, _ := fs.Sub(content, "dist") //чтобы получать доступ к файлам без указания корневой директории
 	sm.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(r.RemoteAddr, r.RequestURI)
-		fmt.Println("count:", count)
+		log.Println(r.RemoteAddr, r.RequestURI)
 		w.Header().Set("Cache-Control", "no-store")
 		http.FileServer(http.FS(static)).ServeHTTP(w, r)
 	})
-	sm.HandleFunc("GET /api/hello", api_hello)
 	sm.HandleFunc("GET /api/count", api_count)
 	sm.HandleFunc("GET /api/shutdown", api_shutdown)
 

@@ -13,15 +13,20 @@ body {
 }
 
 #app {
-	@apply container flex flex-col h-dvh p-2 gap-2 max-w-2xl mx-auto;
+	@apply flex flex-col h-dvh p-2 gap-2 mx-auto;
 }
 
 @utility mybg-* {
 	background-color: --value(--color- *);
 }
 
+@property --angle {
+	syntax: "<angle>";
+	initial-value: 0deg;
+	inherits: false;
+}
+
 @utility myrainbow-* {
-	--angle: 0deg;
 	border: 3px solid transparent;
 	background: linear-gradient(--value(--color- *), --value(--color- *))
 			padding-box,

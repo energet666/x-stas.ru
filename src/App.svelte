@@ -24,11 +24,15 @@
 	fetchCount();
 </script>
 
-<main class="flex flex-col items-center justify-center h-screen">
-	<h1 class="text-8xl text-primary-500">x-stas.ru</h1>
-	<h2 class="text-2xl font-mono text-surface-contrast-500/50">
-		Количество посещений: {count}
-	</h2>
+<main
+	class="flex flex-col items-center justify-center h-screen select-none myrainbow-surface-50-950 myrainbow-w-5 rounded-2xl"
+>
+	<div class=" p-3 rounded-2xl">
+		<h1 class="text-primary-500 text-8xl">x-stas.ru</h1>
+		<div class="text-2xl font-mono text-secondary-200-800">
+			<p class="">Количество посещений: {count}</p>
+		</div>
+	</div>
 </main>
 
 <style lang="postcss">
