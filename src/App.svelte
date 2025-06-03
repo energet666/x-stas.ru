@@ -27,10 +27,10 @@
 <main
 	class="flex flex-col items-center justify-center h-screen select-none myrainbow-surface-50-950 myrainbow-w-5 rounded-2xl"
 >
-	<div class=" p-3 rounded-2xl">
-		<h1 class="text-primary-500 text-8xl">x-stas.ru</h1>
+	<div class=" p-3 rounded-2xl text-center">
+		<h1 class="text-primary-500 sm:text-9xl text-6xl">x-stas.ru</h1>
 		<div class="text-2xl font-mono text-secondary-200-800">
-			<p class="">Количество посещений: {count}</p>
+			<p class="">Loads: {count}</p>
 		</div>
 	</div>
 </main>
