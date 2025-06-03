@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+@import "@skeletonlabs/skeleton";
+@import "@skeletonlabs/skeleton/optional/presets";
+@import "@skeletonlabs/skeleton/themes/rose";
+@import "@skeletonlabs/skeleton/themes/cerberus";
+
+@source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
+
+body {
+	@apply touch-manipulation base-font-color dark:base-font-color-dark;
+}
+
+#app {
+	@apply container flex flex-col h-dvh p-2 gap-2 max-w-2xl mx-auto;
+}
+
+@utility mybg-* {
+	background-color: --value(--color- *);
+}
+
+@utility myrainbow-* {
+	--angle: 0deg;
+	border: 3px solid transparent;
+	background: linear-gradient(--value(--color- *), --value(--color- *))
+			padding-box,
+		conic-gradient(
+				from var(--angle),
+				#ff0000,
+				#ff7f00,
+				#ffff00,
+				#00ff00,
+				#0000ff,
+				#ff0000
+			)
+			border-box;
+	animation: rainbow 4s linear infinite;
+}
+
+@utility myrainbow-w-* {
+	border: calc(--value(integer) * 1px) transparent solid;
+}
+
+@keyframes rainbow {
+	to {
+		--angle: 360deg;
+	}
+}
