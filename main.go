@@ -80,12 +80,15 @@ func main() {
 		httpServ.Shutdown(context.Background())
 	}()
 
-	startBrowser("http://localhost:" + port)
+	err := startBrowser("http://localhost:" + port)
+	if err != nil {
+		log.Println(err)
+	}
 
 	wg.Wait()
 }
 
-func startBrowser(url string) {
+func startBrowser(url string) error {
 	var err error
 	switch runtime.GOOS {
 	case "linux":
@@ -98,6 +101,7 @@ func startBrowser(url string) {
 		err = fmt.Errorf("unsupported platform")
 	}
 	if err != nil {
-		log.Fatal(err)
+		return fmt.Errorf("browser could not be opened: %v", err)
 	}
+	return nil
 }
