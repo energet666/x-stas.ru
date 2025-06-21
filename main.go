@@ -32,7 +32,8 @@ type CountMsg struct {
 // }
 
 func api_count(w http.ResponseWriter, r *http.Request) {
-	log.Println(r.RemoteAddr, r.RequestURI)
+	realIP := r.Header.Get("X-Real-IP")
+	log.Println(realIP, "(", r.RemoteAddr, ")", r.RequestURI)
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
 	count++
@@ -41,7 +42,9 @@ func api_count(w http.ResponseWriter, r *http.Request) {
 }
 
 func api_shutdown(w http.ResponseWriter, r *http.Request) {
-	log.Println(r.Host, r.RequestURI)
+	realIP := r.Header.Get("X-Real-IP")
+	log.Println(realIP, "(", r.RemoteAddr, ")", r.RequestURI)
+	//cancel()
 }
 
 var count = 0
@@ -56,7 +59,7 @@ func main() {
 		http.FileServer(http.FS(static)).ServeHTTP(w, r)
 	})
 	sm.HandleFunc("GET /api/count", api_count)
-	sm.HandleFunc("GET /api/shutdown", api_shutdown)
+	sm.HandleFunc("/api/shutdown", api_shutdown)
 
 	httpServ := &http.Server{
 		Addr:           ":" + port,
