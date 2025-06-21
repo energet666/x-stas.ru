@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { Power, Save } from "@lucide/svelte";
-	const host = window.location.hostname;
-	const protocol = window.location.protocol;
-	const apiHost = protocol + "//" + host + ":8080"; //для отладки или если статика и бэкенд на разных хостах
-	// const apiHost = "http://127.0.0.1:8080";
+	import { Power, Save } from "@lucide/svelte/dist/icons";
+	const apiHost = "";
+	//apiHost = "http://127.0.0.1:8080";
 
 	window.addEventListener("unload", () => {
 		console.log("unload");
