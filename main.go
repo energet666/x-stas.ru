@@ -50,7 +50,8 @@ func main() {
 	sm := http.NewServeMux()
 	static, _ := fs.Sub(content, "dist") //чтобы получать доступ к файлам без указания корневой директории
 	sm.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		log.Println(r.RemoteAddr, r.RequestURI)
+		realIP := r.Header.Get("X-Real-IP")
+		log.Println(realIP, "(", r.RemoteAddr, ")", r.RequestURI)
 		w.Header().Set("Cache-Control", "no-store")
 		http.FileServer(http.FS(static)).ServeHTTP(w, r)
 	})
